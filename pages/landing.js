@@ -6,7 +6,7 @@ import Footer from "components/Footers/Footer.js";
 
 export default function Landing() {
   return (
-    <>
+    <div className="flex w-full flex-col">
       <Navbar transparent />
       <main>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
@@ -26,6 +26,6 @@ export default function Landing() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
