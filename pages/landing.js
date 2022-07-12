@@ -1,4 +1,9 @@
 import React from "react";
+import SectionStart from '../components/Sections/SectionStart';
+import SectionGetAssistance from '../components/Sections/SectionGetAssistance';
+import SectionPricing from '../components/Sections/SectionPricing';
+import SectionClients from '../components/Sections/SectionClients';
+import SectionTestimonials from '../components/Sections/SectionTestimonials';
 
 // components
 import Navbar from "components/Navbars/Navbar.js";
@@ -6,9 +11,14 @@ import Footer from "components/Footers/Footer.js";
 
 export default function Landing() {
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex w-full h-full flex-col">
       <Navbar transparent />
       <main>
+        <SectionStart />
+        <SectionGetAssistance />
+        <SectionPricing />
+        <SectionClients />
+        <SectionTestimonials />
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
