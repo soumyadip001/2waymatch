@@ -1,4 +1,5 @@
-import Button from '../atoms/Button'
+import Button from '../atoms/Button';
+import AgniSvg from '../atoms/AgniSvg';
 
 function Navbar() {
   const NavigationArray = [
@@ -15,15 +16,15 @@ function Navbar() {
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <nav className="relative z-50 flex justify-between">
           <div className='flex items-center md:gap-x-12'>
-            <div className="flex items-center logo">
-              LOGO
+            <div className="flex items-center logo text-blue-600 font-display text-3xl">
+              <AgniSvg />
             </div>
             <div className="hidden md:flex md:gap-x-6">
               {NavigationArray.map(nav =>
                 <a
                   href={nav.href}
                   key={nav.name}
-                  className='inline-block rounded-lg py-1 px-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+                  className='inline-block rounded-lg py-1 px-2 text-md text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                 >
                   {nav.name}
                 </a>
@@ -32,7 +33,7 @@ function Navbar() {
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             <div className='hidden md:block'>
-              <a className='inline-block rounded-lg py-1 px-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900' href='/login'>Sign In</a>
+              <a className='inline-block rounded-lg py-1 px-2 text-md text-slate-700 hover:bg-slate-100 hover:text-slate-900' href='/login'>Sign In</a>
             </div>
             <Button primary>Buy now</Button>
           </div>
