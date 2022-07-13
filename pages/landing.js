@@ -4,6 +4,7 @@ import SectionGetAssistance from '../components/Sections/SectionGetAssistance';
 import SectionPricing from '../components/Sections/SectionPricing';
 import SectionClients from '../components/Sections/SectionClients';
 import SectionTestimonials from '../components/Sections/SectionTestimonials';
+import SectionFeatures from '../components/Sections/SectionFeatures';
 import FooterBig from '../components/Footers/FooterBig';
 
 // components
@@ -15,6 +16,7 @@ export default function Landing() {
       <Navbar transparent />
       <main>
         <SectionStart />
+        <SectionFeatures />
         <SectionGetAssistance />
         <SectionPricing />
         <SectionClients />
