@@ -13,7 +13,7 @@ function Navbar() {
 
   return (
     <header className='py-10'>
-      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-10'>
         <nav className="relative z-50 flex justify-between">
           <div className='flex items-center md:gap-x-12'>
             <div className="flex items-center logo text-blue-600 font-display text-3xl">
