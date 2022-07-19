@@ -141,7 +141,7 @@ export default function FooterBig() {
 
         <div className="flex flex-col items-center justify-between py-10 border-t border-solid lg:flex-row border-gray">
           <ul className="flex flex-wrap space-x-5 text-xs">
-            <li className="mb-6 text-center flex-full lg:flex-none lg:mb-0">© 2022 Wave, Inc. All rights reserved.</li>
+            <li className="mb-6 text-center flex-full lg:flex-none lg:mb-0">&copy;2022 <strong>2Way Match, Inc.</strong> All rights reserved.</li>
             <li className="lg:ml-6">
               <a href="#_" className="relative inline-block text-black group">
                 <span className="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>

@@ -6,17 +6,19 @@ export default function SectionFeatures() {
       <div className="container max-w-xl p-6 py-20 sm:py-32 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-center sm:text-5xl dark:text-gray-50">
-            Aliquip definiebas ad est
+            Why you should choose 2way Match
           </h2>
-          <p className="max-w-3xl mx-auto mt-4 text-lg text-center dark:text-slate-400">Quando cetero his ne, eum admodum sapientem ut.</p>
+          <p className="max-w-3xl mx-auto mt-4 text-lg text-center dark:text-slate-400">
+            Unlike conventional practices, we are a technology-oriented company, which uses best algorithms to find a suitable match for you. Established in the year 2020, we have successfully Created more than 10,000 clients in such a short span of time. Our purpose is to build happy marriages in a personalized and reliable way with ultimate privacy and confidentiality.
+          </p>
         </div>
         <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center px-6 sm:px-8">
           <div>
             <h3 className="text-2xl font-bold tracking-tight sm:text-3xl dark:text-gray-50">
-              Ad vix debet docendi
+              Personalized Services
             </h3>
             <p className="mt-3 text-lg dark:text-slate-400">
-              Ne dicta praesent ocurreret has, diam theophrastus at pro. Eos etiam regione ut, persius eripuit quo id. Sit te euismod tacimates.
+              We have provided an interactive platform where you only need to show your interest and later work will be taken care by our skilled professionals.
             </p>
             <div className="mt-12 space-y-12">
               <div className="flex">
@@ -32,7 +34,7 @@ export default function SectionFeatures() {
                     Per ei quaeque sensibus
                   </h4>
                   <p className="mt-2 dark:text-slate-400">
-                    Ex usu illum iudico molestie. Pro ne agam facete mediocritatem, ridens labore facete mea ei. Pro id apeirian dignissim.
+                    Our dedicated team ensures that we meet our client&apos;s expectations by taking immense care of their beliefs and values.
                   </p>
                 </div>
               </div>
@@ -71,8 +73,10 @@ export default function SectionFeatures() {
         <div>
           <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center px-6 sm:px-8">
             <div className="lg:col-start-2">
-              <h3 className="text-2xl font-bold tracking-tight sm:text-3xl dark:text-gray-50">Eam nibh gloriatur ex</h3>
-              <p className="mt-3 text-lg dark:text-slate-400">Per odio fabellas consulatu cu. Utroque detracto mel ea, quo te latine theophrastus. Ea his tale nibh dissentias, mei exerci tamquam euripidis cu.</p>
+              <h3 className="text-2xl font-bold tracking-tight sm:text-3xl dark:text-gray-50">Wedding Services</h3>
+              <p className="mt-3 text-lg dark:text-slate-400">
+                Our dedicated team ensures that we meet our client&apos;s expectations by taking immense care of their beliefs and values.
+              </p>
               <div className="mt-12 space-y-12">
                 <div className="flex">
                   <div className="flex-shrink-0">
