@@ -9,12 +9,12 @@ import SectionContact from '../components/Sections/SectionContact';
 import FooterBig from '../components/Footers/FooterBig';
 
 // components
-import Navbar from "../components/Navbars/Navbar.js";
+import Navbar from "../components/Navbars/Navbar";
 
 export default function Landing() {
   return (
     <div className="flex w-full h-full flex-col">
-      <Navbar transparent />
+      <Navbar />
       <main>
         <SectionStart />
         <SectionFeatures />
