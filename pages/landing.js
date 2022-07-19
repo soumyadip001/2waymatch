@@ -9,7 +9,7 @@ import SectionContact from '../components/Sections/SectionContact';
 import FooterBig from '../components/Footers/FooterBig';
 
 // components
-import Navbar from "components/Navbars/Navbar.js";
+import Navbar from "../components/Navbars/Navbar.js";
 
 export default function Landing() {
   return (
