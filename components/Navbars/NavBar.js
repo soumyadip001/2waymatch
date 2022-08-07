@@ -35,7 +35,7 @@ function Navbar() {
             <div className='hidden md:block'>
               <a className='inline-block rounded-lg py-1 px-2 text-md text-slate-700 hover:bg-slate-100 hover:text-slate-900' href='/login'>Sign In</a>
             </div>
-            <Button primary>Buy now</Button>
+            <Button primary>Register</Button>
           </div>
         </nav>
       </div>
