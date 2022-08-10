@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Button from '../atoms/Button';
 import ButtonWhite from '../atoms/ButtonWhite';
 
@@ -18,17 +19,26 @@ export default function SectionDownloadApp() {
             Download our app now!
           </p>
           <div className="flex flex-row gap-4">
-            <ButtonWhite type="submit">
-              <img src={'https://www.pinpng.com/pngs/m/683-6835555_apple-app-store-icon-free-png-and-svg.png'} height={'auto'} width={'22px'} alt={'download from app store'} />
+            <ButtonWhite type="submit" textColor="text-black">
+              <img
+                src={'https://www.pinpng.com/pngs/m/683-6835555_apple-app-store-icon-free-png-and-svg.png'} height={'auto'}
+                width={'22px'}
+                alt={'download from app store'}
+							/>
               &nbsp; App Store
             </ButtonWhite>
             <Button primary>
-              <img src={'/img/Google_Play-Icon-Logo.wine.svg'} height={'auto'} width={'22px'} alt={'download from play store'} />
+              <img
+                src={'/img/Google_Play-Icon-Logo.wine.svg'}
+                height={'auto'}
+                width={'24px'}
+                alt={'download from play store'}
+							/>
               Play Store
             </Button>
           </div>
         </div>
-        <div>
+        <div className='rounded-lg overflow-hidden'>
           <img
             src={'https://source.unsplash.com/HQSEvyN56K0'}
             alt={'App UI'}

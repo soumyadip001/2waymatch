@@ -1,15 +1,14 @@
+import Link from 'next/link'
+
 import Button from '../atoms/Button';
 import AgniSvg from '../atoms/AgniSvg';
 
-function Navbar() {
-  const NavigationArray = [
-    { id: 'start', name: 'Start', href: '#' },
-    { id: 'how-it-works', name: 'How it works', href: '#' },
-    { id: 'rules', name: 'Rules', href: '#' },
-    { id: 'pricing', name: 'Pricing', href: '#' },
-    { id: 'clients', name: 'Clients', href: '#' },
-    { id: 'contact', name: 'Contact', href: '#' },
-  ]
+function Navbar({ menu, showLogin = true, showRegister = true }) {
+  const registerBtn = showRegister ?
+    <Button primary>
+      <Link href={'/auth/register'}>Register</Link>
+    </Button>
+    : null;
 
   return (
     <header className='py-10'>
@@ -20,7 +19,7 @@ function Navbar() {
               <AgniSvg />
             </div>
             <div className="hidden md:flex md:gap-x-6">
-              {NavigationArray.map(nav =>
+              {menu?.map(nav =>
                 <a
                   href={nav.href}
                   key={nav.name}
@@ -32,10 +31,15 @@ function Navbar() {
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className='hidden md:block'>
-              <a className='inline-block rounded-lg py-1 px-2 text-md text-slate-700 hover:bg-slate-100 hover:text-slate-900' href='/login'>Sign In</a>
-            </div>
-            <Button primary>Register</Button>
+            { showLogin &&
+              <div className='hidden md:block'>
+                <Link 
+                  className='inline-block rounded-lg py-1 px-2 text-md text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+                  href='/auth/login'
+                >Sign In</Link>
+              </div>
+            }
+            { registerBtn }
           </div>
         </nav>
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import styles from '../../styles/FigCaption.module.css';
 
 export default function FigCaption({ name, role, src = 'avatar-1.png' }) {

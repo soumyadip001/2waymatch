@@ -1,4 +1,5 @@
 import ContactCard from '../atoms/ContactCard'
+import ContactForm from '../forms/ContactForm'
 
 export default function SectionContact() {
   return (
@@ -18,7 +19,7 @@ export default function SectionContact() {
             <p className="md:my-4 text-slate-400">
               Duis dignissim mi ut laoreet mollis. Nunc id tellus finibus, eleifend mi vel, maximus justo. Maecenas mi tortor, pellentesque a aliquam ut.
             </p>
-            <div className="flex flex-col md:flex-row mt-8 gap-8 md:gap-0 w-full md:w-auto">
+            <div className="flex flex-col md:flex-row mt-8 gap-8 md:gap-0 w-full">
               <ContactCard 
                 src="/img/avatar-1.png"
                 alt={'Avatar CEO'}
@@ -44,29 +45,7 @@ export default function SectionContact() {
             <p className="my-4 text-slate-400">
               Mauris rhoncus orci in imperdiet placerat. Vestibulum euismod nisl suscipit ligula volutpat, a feugiat urna maximus. Cras massa nibh, tincidunt ut eros.
             </p>
-            <div className="bg-white lg:bg-white/10 w-full h-auto text-slate-400 rounded-3xl p-4 md:p-6 flex flex-col gap-4 text-sm">
-              <div className="flex flex-col md:flex-row items-center w-full h-auto gap-4 shadow-lg">
-                <input
-                  type={'text'}
-                  className="w-full h-11 outline-none ring ring-offset-1 focus:ring-offset-2 font-normal px-4 rounded"
-                  placeholder="Your Name" />
-
-                <input
-                  type={'email'}
-                  className="w-full h-11 outline-none ring focus:ring-offset-2 font-normal px-4 rounded"
-                  placeholder="Your Email" />
-              </div>
-              <div className="flex w-full">
-                <input
-                  type={'email'}
-                  className="w-full h-11 outline-none ring ring-offset-1 focus:ring-offset-2 font-normal px-4 rounded"
-                  placeholder="Subject" />
-              </div>
-              <div className="flex w-full">
-                <textarea className="w-full h-auto outline-none ring ring-offset-1 focus:ring-offset-2 font-normal px-4 rounded" rows={10}></textarea>
-              </div>
-              <button className="group inline-flex items-center justify-center rounded py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-blue-600 text-white hover:bg-blue-400 active:bg-blue-200 active:text-slate-600 focus-visible:outline-white">Send A Message</button>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </div>

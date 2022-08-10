@@ -1,4 +1,4 @@
-import Image from 'next/image'
+/* eslint-disable @next/next/no-img-element */
 
 export default function ContactCard({ src, alt, name, role, tel, email }) {
   return (
@@ -6,7 +6,7 @@ export default function ContactCard({ src, alt, name, role, tel, email }) {
       <img
         src={src}
         alt={alt}
-        className="h-full h-full md:h-20 md:w-20 overflow-hidden rounded"
+        className="h-full md:h-20 md:w-20 overflow-hidden rounded"
       />
       <h5 className="mt-4">{ name }</h5>
       <p className="text-slate-400">{ role }</p>

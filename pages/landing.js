@@ -12,10 +12,14 @@ import FooterBig from '../components/Footers/FooterBig';
 // components
 import Navbar from "../components/Navbars/NavBar";
 
-export default function Landing() {
+export default function Landing({ config }) {
   return (
     <div className="flex w-full h-full flex-col">
-      <Navbar />
+      <Navbar
+        menu={config?.data.menu}
+        showLogin={config?.data.flags?.allowLogin}
+        showRegister={config?.data.flags?.allowRegister}
+      />
       <main>
         <SectionStart />
         <SectionFeatures />
@@ -26,8 +30,19 @@ export default function Landing() {
         <SectionTestimonials />
         <SectionContact />
       </main>
-      <FooterBig />
+      <FooterBig data={config?.data?.footer} />
       {/* <Footer /> */}
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const res = await fetch('http://localhost:4001')
+  const config = await res.json()
+
+  return {
+    props: {
+      config
+    }
+  }
 }
