@@ -37,7 +37,10 @@ export default function Landing({ config }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('http://localhost:4001')
+  const url = process.env.NEXT_PUBLIC_LANDING_SERVICE_API_URL
+        ? process.env.NEXT_PUBLIC_LANDING_SERVICE_API_URL
+        : 'http://localhost:3000'
+  const res = await fetch(url)
   const config = await res.json()
 
   return {
