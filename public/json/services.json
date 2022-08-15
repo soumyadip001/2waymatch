@@ -1,0 +1,45 @@
+{
+    "success": true,
+    "data": {
+        "title": "Why you should choose 2way Match",
+        "para": "Unlike conventional practices, we are a technology-oriented company, which uses best algorithms to find a suitable match for you. Established in the year 2020, we have successfully Created more than 10,000 clients in such a short span of time. Our purpose is to build happy marriages in a personalized and reliable way with ultimate privacy and confidentiality.",
+        "phaseOne": {
+            "title": "Personalized Services",
+            "para": "We have provided an interactive platform where you only need to show your interest and later work will be taken care by our skilled professionals.",
+            "cover": "https://source.unsplash.com/random/360x480",
+            "services": [
+                {
+                    "title": "Per ei quaeque sensibus",
+                    "desc": "Our dedicated team ensures that we meet our client's expectations by taking immense care of their beliefs and values."
+                },
+                {
+                    "title": "Cu imperdiet posidonium sed",
+                    "desc": "Amet utinam aliquando ut mea, malis admodum ocurreret nec et, elit tibique cu nec. Nec ex maluisset inciderint, ex quis."
+                },
+                {
+                    "title": "Nulla omittam sadipscing mel ne",
+                    "desc": "At sed possim oporteat probatus, justo graece ne nec, minim commodo legimus ut vix. Ut eos iudico quando soleat, nam modus."
+                }
+            ]
+        },
+        "phaseTwo": {
+            "title": "Wedding Services",
+            "para": "Our dedicated team ensures that we meet our client's expectations by taking immense care of their beliefs and values.",
+            "cover": "https://source.unsplash.com/random/360x480",
+            "services": [
+                {
+                    "title": "Cibo augue offendit has ad",
+                    "desc": "An per velit appellantur, ut utinam minimum nominavi sit, odio nostro habemus ne nec. Ne sonet regione contentiones est."
+                },
+                {
+                    "title": "At eum ferri luptatum lobortis",
+                    "desc": "Te per quidam maiorum ocurreret, etiam delicatissimi usu ad. Ne has quod periculis. Te sit primis iisque efficiantur."
+                },
+                {
+                    "title": "Dicunt verterem evertitur eu sea",
+                    "desc": "Audire principes rationibus eam an, autem nominavi luptatum per te. Sumo fabulas vim eu, sonet saperet eleifend ut vix."
+                }
+            ]
+        }
+    }
+}

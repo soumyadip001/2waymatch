@@ -6,7 +6,7 @@ import AgniSvg from '../atoms/AgniSvg';
 function Navbar({ menu, showLogin = true, showRegister = true }) {
   const registerBtn = showRegister ?
     <Button primary>
-      <Link href={'/auth/register'}>Register</Link>
+      <Link href={'/register'}>Register</Link>
     </Button>
     : null;
 
@@ -35,7 +35,7 @@ function Navbar({ menu, showLogin = true, showRegister = true }) {
               <div className='hidden md:block'>
                 <Link 
                   className='inline-block rounded-lg py-1 px-2 text-md text-slate-700 hover:bg-slate-100 hover:text-slate-900'
-                  href='/auth/login'
+                  href='/login'
                 >Sign In</Link>
               </div>
             }

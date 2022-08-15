@@ -1,0 +1,153 @@
+{
+    "success": true,
+    "data": {
+        "flags": {
+            "allowLogin": true,
+            "allowRegister": true
+        },
+        "menu": [
+            {
+                "id": "start",
+                "name": "Start",
+                "href": "#"
+            },
+            {
+                "id": "how-it-works",
+                "name": "How it works",
+                "href": "#"
+            },
+            {
+                "id": "rules",
+                "name": "Rules",
+                "href": "#"
+            },
+            {
+                "id": "pricing",
+                "name": "Pricing",
+                "href": "#"
+            },
+            {
+                "id": "clients",
+                "name": "Clients",
+                "href": "#"
+            },
+            {
+                "id": "contact",
+                "name": "Contact",
+                "href": "#"
+            }
+        ],
+        "sectionStart": {
+            "title": "The most Personalized matrimonial service for india.",
+            "highlight": "Personalized",
+            "para": "A leading matrimonial services platform, 2way Match is founded by a team of young professionals who aims to provide perfect matchmaking experience.",
+            "buttons": [
+                {
+                    "name": "Get One Month Free",
+                    "link": ""
+                },
+                {
+                    "name": "Pricing",
+                    "link": ""
+                }
+            ]
+        },
+        "footer": {
+            "companyName": "2Way Match, Inc.",
+            "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit now se.",
+            "social": {
+                "facebook": "#",
+                "instagram": "#",
+                "twitter": "#",
+                "github": "#",
+                "dribble": "#"
+            },
+            "links": [
+                {
+                    "title": "SOLUTIONS",
+                    "links": [
+                        {
+                            "title": "Marketing",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Analytics",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Commerce",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Insights",
+                            "href": "#"
+                        }
+                    ]
+                },
+                {
+                    "title": "SUPPORT",
+                    "links": [
+                        {
+                            "title": "Pricing",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Documentation",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Guides",
+                            "href": "#"
+                        },
+                        {
+                            "title": "API Status",
+                            "href": "#"
+                        }
+                    ]
+                },
+                {
+                    "title": "COMPANY",
+                    "links": [
+                        {
+                            "title": "About",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Blog",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Jobs",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Press",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Partners",
+                            "href": "#"
+                        }
+                    ]
+                },
+                {
+                    "title": "LEGAL",
+                    "links": [
+                        {
+                            "title": "Claim",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Privacy",
+                            "href": "#"
+                        },
+                        {
+                            "title": "Terms",
+                            "href": "#"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

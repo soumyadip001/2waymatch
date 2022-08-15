@@ -1,0 +1,50 @@
+{
+    "success": true,
+    "data": {
+        "title": "Simple pricing,",
+        "para": "It doesnt matter what size your business is, our software wont work well for you.",
+        "pricing": [
+            {
+                "primary": false,
+                "title": "Starter",
+                "desc": "Good for anyone who is self-employed and just getting started.",
+                "price": "$9",
+                "services": [
+                    "Send 10 quotes and invoices",
+                    "Connect up to 2 bank accounts",
+                    "Track up to 15 expenses per month",
+                    "Manual payroll support",
+                    "Export up to 3 reports"
+                ]
+            },
+            {
+                "primary": true,
+                "title": "Small business",
+                "desc": "Perfect for small / medium sized businesses.",
+                "price": "$15",
+                "services": [
+                    "Send 25 quotes and invoices",
+                    "Connect up to 5 bank accounts",
+                    "Track up to 50 expenses per month",
+                    "Automated payroll support",
+                    "Export up to 12 reports",
+                    "Bulk reconcile transactions",
+                    "Track in multiple currencies"
+                ]
+            },
+            {
+                "primary": false,
+                "title": "Enterprise",
+                "desc": "For even the biggest enterpise companies.",
+                "price": "$39",
+                "services": [
+                    "Send unlimited quotes and invoices",
+                    "Connect up to 15 bank accounts",
+                    "Track up to 200 expenses per month",
+                    "Automated payroll support",
+                    "Export up to 25 reports, including TPS"
+                ]
+            }
+        ]
+    }
+}

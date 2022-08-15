@@ -1,0 +1,51 @@
+{
+    "success": true,
+    "data": {
+        "title": "Loved by businesses worldwide.",
+        "para": "Our software is so simple that people cant help but fall in love with it. Simplicity is easy when you just skip tons of mission-critical features.",
+        "clients": [
+            {
+                "id": "1",
+                "name": "Sheryl Berge",
+                "role": "CEO at Lynch LLC",
+                "photo": "avatar-1.png",
+                "feedback": "TaxPal is so easy to use I cant help but wonder if its really doing the things the government expects me to do."
+            },
+            {
+                "id": "2",
+                "name": "Amy Hahn",
+                "role": "Director at Velocity Industries",
+                "photo": "avatar-2.png",
+                "feedback": "Im trying to get a hold of someone in support, Im in a lot of trouble right now and they are saying it has something to do with my books. Please get back to me right away."
+            },
+            {
+                "id": "3",
+                "name": "Leland Kiehn",
+                "role": "Founder of Kiehn and Sons",
+                "photo": "avatar-3.png",
+                "feedback": "The best part about TaxPal is every time I pay my employees, my bank balance doesnt go down like it used to. Looking forward to spending this extra cash when I figure out why my card is being declined."
+            },
+            {
+                "id": "4",
+                "name": "Sheryl Berge",
+                "role": "CEO at Lynch LLC",
+                "photo": "avatar-4.png",
+                "feedback": "There are so many things I had to do with my old software that I just dont do at all with TaxPal. Suspicious but I cant say I dont love it."
+            },
+            {
+                "id": "5",
+                "name": "Sheryl Berge",
+                "role": "CEO at Lynch LLC",
+                "photo": "avatar-5.png",
+                "feedback": "I used to have to remit tax to the EU and with TaxPal I somehow dont have to do that anymore. Nervous to travel there now though."
+            },
+            {
+                "id": "6",
+                "name": "Sheryl Berge",
+                "role": "CEO at Lynch LLC",
+                "photo": "avatar-1.png",
+                "feedback": "This is the fourth email Ive sent to your support team. I am literally being held in jail for tax fraud. Please answer your damn emails, this is important."
+            }
+        ]
+    }
+}
