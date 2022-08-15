@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from 'next/link'
 import AuthFooter from "../components/Footers/AuthFooter"
 
 function Login() { 
@@ -47,9 +48,11 @@ function Login() {
               </div>
             </form>
 
-            <div className="text-center">
-              <span className="text-xs text-gray-400 font-semibold">Dont have account?</span>
-              <a href="#" className="text-xs font-semibold text-blueGray-600">Sign up</a>
+            <div className="text-center text-xs">
+              <span className="text-gray-400 font-semibold">Dont have account?</span> &nbsp;
+              <span className="text-blueGray-800 font-bold underline">
+                <Link href={"/register"}>Sign up</Link>
+              </span>
             </div>
           </div>
         </div>

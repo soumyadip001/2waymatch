@@ -2,6 +2,7 @@
 import AuthFooter from "../components/Footers/AuthFooter"
 import RegisterPageSvg from "../components/icons/RegisterPageSvg"
 import Head from 'next/head'
+import Link from 'next/link'
 
 function Register() {
   return (
@@ -86,6 +87,14 @@ function Register() {
                 <div className="w-full px-3 mb-5">
                   <button className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150">REGISTER NOW</button>
                 </div>
+              </div>
+              <div className="flex text-xs">
+                <p>
+                  Already registered? &nbsp;
+                  <span className="text-blueGray-800 font-bold underline">
+                    <Link href={'/login'}>Login here</Link>
+                  </span>
+                </p>
               </div>
             </div>
           </div>
