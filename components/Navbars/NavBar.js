@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import Button from '../atoms/Button';
+import Button from '../buttons/Button';
 import AgniSvg from '../atoms/AgniSvg';
 
 function Navbar({ menu, showLogin = true, showRegister = true }) {

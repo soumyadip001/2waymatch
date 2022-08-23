@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import Button from '../atoms/Button';
-import ButtonWhite from '../atoms/ButtonWhite';
+import Button from '../buttons/Button';
+import ButtonWhite from '../buttons/ButtonWhite';
 
 export default function SectionDownloadApp() {
 	return (

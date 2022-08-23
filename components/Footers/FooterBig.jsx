@@ -23,7 +23,7 @@ export default function FooterBig({ data = { desc: '', links: [] } }) {
             className="grid w-full grid-cols-2 pt-2 mt-20 sm:grid-cols-4 gap-y-16 lg:gap-x-8 md:w-5/6 md:mt-0 md:pr-6"
           >
             {
-              data.links.map((fl, index) =>
+              data.links?.map((fl, index) =>
                 <div
                   key={index}
                   className="md:justify-self-end"
@@ -33,7 +33,7 @@ export default function FooterBig({ data = { desc: '', links: [] } }) {
                   </h3>
                   <ul className="mt-6 space-y-4 text-sm">
                     {
-                      fl.links.map(fl1 =>
+                      fl.links?.map(fl1 =>
                         <li key={fl1.title}>
                           <a
                             href={fl1.href}
