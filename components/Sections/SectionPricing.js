@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { useEffect, useState } from 'react'
 import ScribbleSvg3 from '../atoms/ScribbleSvg3'
 

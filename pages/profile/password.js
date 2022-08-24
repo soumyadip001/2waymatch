@@ -10,6 +10,7 @@ import SuccessAlert from '../../components/alerts/SuccessMessage'
 import FormControl from '../../components/forms/FormControl'
 import InputPassword from '../../components/forms/InputPassword'
 import ButtonOutline from '../../components/buttons/ButtonOutline'
+import Button from '../../components/buttons/Button'
 import useAuth from '../../components/useAuth'
 
 export default function Password() {
