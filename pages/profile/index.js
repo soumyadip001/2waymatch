@@ -1,30 +1,41 @@
-import { useState } from 'react'
+/* eslint-disable @next/next/no-img-element */
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
-import ErrorAlert from '../../components/alerts/ErrorMessgae'
-import SuccessAlert from '../../components/alerts/SuccessMessage'
+import ErrorAlert from '../../components/alerts/ErrorAlert'
+import SuccessAlert from '../../components/alerts/SuccessAlert'
 import ProfileNavbar from '../../components/Navbars/ProfileNavbar'
 import ProfileSidebar from '../../components/Navbars/ProfileSidebar'
 import ButtonOutline from '../../components/buttons/ButtonOutline'
 import IconButton from '../../components/buttons/IconButton'
 import InputText from '../../components/forms/InputText'
-import FormControl from '../../components/forms/FormControl'
+import InputPhone from '../../components/forms/InputPhone'
 import InputEmail from '../../components/forms/InputEmail'
+import FormControl from '../../components/forms/FormControl'
 import Select from '../../components/forms/Select'
 import PillList from '../../components/forms/PillList'
 import ButtonLogout from '../../components/buttons/ButtonLogout'
 
+import useAuth from '../../components/useAuth'
 
 export default function Profile() {
 
-  const auth = getAuth()
+  const user = useAuth()
   const router = useRouter()
+  const defaultFormData = {
+    name: '', email: '', altEmail: '',
+    phone: '', gender: 'Male', dob: '',
+    country: 'India', height: '', weight: '',
+    maritalStatus: 'Single', diet: 'Non Veg',
+    bloodGroup: '', disabled: false,
+  }
 
-  const [user, setUser] = useState(null)
-  const [error, setError] = useState('This is an error message')
-  const [success, setSuccess] = useState('This is an success message')
+  const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
+  const [formData, setFormData] = useState(defaultFormData)
+  const [loader, setLoader] = useState(false)
+
   const countries = [
     { key: 'IN', value: 'India' },
     { key: 'CA', value: 'Canada' },
@@ -40,18 +51,85 @@ export default function Profile() {
     { key: 'O+', value: 'O+' },
   ]
 
-  onAuthStateChanged(auth, (firebaseUser) => {
-    if (firebaseUser) {
-      setUser(firebaseUser)
-      console.log('firebase user >', firebaseUser)
-    } else {
-      setUser(null)
-    }
-  })
-
   const redirectToPassChange = () => {
     router.push('/profile/password/', )
   }
+
+  const updateFormData = (key, value) => {
+    if (key) {
+      setFormData({
+        ...formData,
+        [key]: value
+      })
+    }
+  }
+
+  const handleProfileUpdate = async () => {
+    setError(null)
+    setSuccess(null)
+    console.log(formData)
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...formData,
+        firebaseUserId: user.uid,
+        name: user.displayName,
+        email: user.email,
+      })
+    }
+
+    if (
+      !formData.altEmail || !formData.phone || !formData.gender
+      || !formData.dob || !formData.country
+    ) {
+      setError('Please fill alternate-email, phone, gender, date of birth and country')
+    } else {
+      setLoader(true)
+      try {
+        const url = process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/basic'
+        const response = await fetch(url, options)
+        const result = await response.json()
+        console.log(result)
+        setLoader(false)
+        setSuccess('Profile updated successfully!')
+      } catch (err) {
+        setLoader(false)
+        setError('Operation failed!')
+        console.error(err)
+      }
+    }
+  }
+
+  const transformDateFormat = (date) => {
+    return date.split('T')[0]
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+      const url = process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/basic'
+      try {
+        const response = await fetch(`${url}/${user.uid}`)
+        const result = await response.json()
+        if (result && result.success) {
+          console.log('>>', result.data)
+          setFormData({
+            ...result.data,
+            dob: transformDateFormat(result.data.dob)
+          })
+          setError(null)
+        }
+      } catch (err) {
+        setSuccess(null)
+        setError('Operation failed!')
+      }
+    }
+    if (user && user.uid) {
+      fetchData()
+    }
+  }, [user])
 
   return (
     <div className="flex w-full h-full flex-col px-4 sm:px-6 lg:px-10">
@@ -84,7 +162,7 @@ export default function Profile() {
               <div className='flex items-center justify-start gap-4'>
                 <div className='flex items-center justify-center w-32 h-32 bg-gray-300 rounded-full border-white border-4 overflow-hidden'>
                   <img
-                    alt=""
+                    alt="Profile"
                     src={`/img/avatar-1.png`}
                     decoding="async"
                     data-nimg="intrinsic"
@@ -97,9 +175,18 @@ export default function Profile() {
                 </div>
               </div>
               <div className='flex flex-row gap-4'>
-                <ButtonOutline>
-                  <i className='fa fa-save'></i>
-                  &nbsp; Save
+                <ButtonOutline
+                  type={'button'}
+                  onClick={handleProfileUpdate}
+                  disabled={loader}
+                >
+                  { loader &&
+                    <i className='fa fa-spinner fa-spin fa-fw mr-2' aria-hidden={'true'}></i>
+                  }
+                  { !loader &&
+                    <i className='fa fa-save mr-2' aria-hidden={'true'}></i>
+                  }
+                  Save
                 </ButtonOutline>
                 <ButtonOutline white>Cancel</ButtonOutline>
               </div>
@@ -111,75 +198,102 @@ export default function Profile() {
                 <input type={'hidden'} value={user.uid} />
               </div>
               <FormControl title={'Name'}>
-                <InputText value={user.displayName} name='Username' />
+                <InputText value={user.displayName} name='Username' readOnly={true} />
               </FormControl>
               <FormControl title={'Email'}>
-                <InputEmail value={user.email} name='email' verified={user.emailVerified} />
+                <InputEmail value={user.email} name='email' verified={user.emailVerified} readOnly={true} />
               </FormControl>
               <FormControl title={'Alternet Email'}>
                 <InputEmail
-                  value={''}
+                  value={formData.altEmail}
                   helpText={'This is your alternet email address. This can be used as a recovery email'}
                   name='alt-email'
                   verificationNeeded={false}
+                  onChange={(p) => updateFormData('altEmail', p)}
                 />
               </FormControl>
               <FormControl title={'Phone Number'}>
-                <InputText value={''} name='Phone' />
+                <InputPhone
+                  value={formData.phone} name='Phone'
+                  onChange={(p) => updateFormData('phone', p)}
+                />
               </FormControl>
               <FormControl title={'Gender'}>
                 <PillList
-                  value={'Male'}
-                  list={['Male', 'Female', 'Others']}
+                  value={formData.gender}
+                  list={['male', 'female', 'others']}
+                  onChange={(p) => updateFormData('gender', p)}
                 />
               </FormControl>
               <div className='flex flex-row w-full justify-between items-center'>
                 <div className='flex w-7/12 items-center'>
                   <FormControl title={'Date Of Birth'}>
-                    <InputText type={'date'} value={''} name='dob' />
+                    <InputText
+                      type={'date'}
+                      value={formData.dob}
+                      name='dob'
+                      onChange={(p) => updateFormData('dob', p)}
+                    />
                   </FormControl>
                 </div>
                 <div className='flex w-4/12 items-center'>
                   <FormControl title={'Country'}>
-                    <Select name={'country'} options={countries} value={'IN'}></Select>
+                    <Select
+                      name={'country'}
+                      options={countries}
+                      value={formData.country}
+                      onChange={(p) => updateFormData('country', p)}
+                    ></Select>
                   </FormControl>
                 </div>
               </div>
               <div className='flex flex-row w-full justify-between items-center'>
                 <div className='flex w-6/12 items-center'>
                   <FormControl title={'Height'}>
-                    <InputText value={''} name='height' helpText={'Your height in cm'} />
+                    <InputText
+                      value={formData.height} name='height' helpText={'Your height in cm'}
+                      onChange={(p) => updateFormData('height', p)}
+                    />
                   </FormControl>
                 </div>
                 <div className='flex w-5/12 items-center'>
                   <FormControl title={'Weight'}>
-                    <InputText value={''} name='weight' helpText={'Your weight in kg'} />
+                    <InputText
+                      value={formData.weight || ''} name='weight' helpText={'Your weight in kg'}
+                      onChange={(p) => updateFormData('weight', p)}
+                    />
                   </FormControl>
                 </div>
               </div>
               <FormControl title={'Marital Status'}>
                 <PillList
-                  value={'Single'}
+                  value={formData.maritalStatus}
                   list={['Single', 'Divorced', 'Others']}
+                  onChange={(p) => updateFormData('maritalStatus', p)}
                 />
               </FormControl>
               <FormControl title={'Diet'}>
                 <PillList
-                  value={'Non Veg'}
+                  value={formData.diet}
                   list={['Veg', 'Non Veg', 'Others']}
+                  onChange={(p) => updateFormData('diet', p)}
                 />
               </FormControl>
               <div className='flex flex-row w-full justify-between items-center'>
                 <div className='flex w-6/12 items-center'>
                   <FormControl title={'Blood Group'}>
-                    <Select name={'blood'} options={BloodGroups} value={'B'}></Select>
+                    <Select
+                      name={'blood'} options={BloodGroups} value={formData.bloodGroup}
+                      onChange={(p) => updateFormData('bloodGroup', p)}
+                    ></Select>
                   </FormControl>
                 </div>
                 <div className='flex w-5/12 items-center'>
                   <FormControl title={'Disabled'}>
                     <PillList
-                      value={'No'}
+                      value={formData.disabled}
                       list={['Yes', 'No']}
+                      onChange={(p) => updateFormData('disabled', p)}
                     />
                   </FormControl>
                 </div>

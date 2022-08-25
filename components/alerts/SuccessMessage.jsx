@@ -1,8 +1,9 @@
-export default function SuccessAlert({ children }) {
+export default function SuccessMessage({ children }) {
   return (
     <div
-      className="h-auto min-h-11 flex justify-start items-center p-4 w-full bg-green-200 text-green-600 font-bold rounded"
+      className="h-auto flex justify-start items-center py-0 w-full text-green-600 font-normal rounded text-sm"
     >
+      <i className="fa fa-check mr-1"></i>
       {children}
     </div>
   )

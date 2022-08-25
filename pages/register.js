@@ -7,12 +7,13 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
 
 import AuthFooter from "../components/Footers/AuthFooter"
 import RegisterPageSvg from "../components/icons/RegisterPageSvg"
-import ErrorAlert from "../components/alerts/ErrorMessgae"
-import SuccessAlert from "../components/alerts/SuccessMessage"
+import ErrorAlert from "../components/alerts/ErrorAlert"
+import SuccessAlert from "../components/alerts/SuccessAlert"
 import SocialFb from '../components/icons/SocialFb'
 
 function Register() {
 
+  const passMatch = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
   const router = useRouter()
   const auth = getAuth()
 
@@ -20,6 +21,7 @@ function Register() {
   const [success, setSuccess] = useState(null)
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
+  const [loader, setLoader] = useState(false)
 
   const handleSubmit = async (event) => { 
     event.preventDefault();
@@ -37,7 +39,10 @@ function Register() {
     // minor validations
     if (!data.password || !data.email || !data.firstName || !data.lastName) {
       setError('You must fill all the details')
+    } else if (!passMatch.test(data.password)) {
+      setError('Password crieteria mismatch!')
     } else {
+      setLoader(true)
       const options = {
         method: 'POST',
         headers: {
@@ -46,15 +51,21 @@ function Register() {
         body: JSON.stringify(data)
       }
 
-      const url = process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL || 'http://localhost:4001'
-      const response = await fetch(`${url}/auth/register`, options)
-      const result = await response.json()
+      try {
+        const url = process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL || 'http://localhost:4002'
+        const response = await fetch(`${url}/auth/register`, options)
+        const result = await response.json()
+        setLoader(false)
 
-      if (result && result.success) {
-        setSuccess(result.message)
-        router.push('/login')
-      } else {
-        setError(result.message)
+        if (result && result.success) {
+          setSuccess(result.message)
+          router.push('/login')
+        } else {
+          setError(result.message)
+        }
+      } catch (err) {
+        setError('Operation failed! Please try again later!')
+        setLoader(false)
       }
     }
   }
@@ -193,7 +204,16 @@ function Register() {
               </div>
               <div className="flex -mx-3">
                 <div className="w-full px-3 mb-5">
-                  <button type='submit' className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150">REGISTER NOW</button>
+                  <button
+                    type='submit'
+                    className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150 disabled:cursor-not-allowed disabled:bg-blueGray-400"
+                    disabled={loader}
+                  >
+                    { loader &&
+                      <i className='fa fa-spinner fa-spin fa-fw mr-2' aria-hidden={'true'}></i>
+                    }
+                    REGISTER NOW
+                  </button>
                 </div>
               </div>
               <div className="flex -mx-3">

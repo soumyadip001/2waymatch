@@ -5,12 +5,12 @@ import { getAuth, signInWithEmailAndPassword, updatePassword } from 'firebase/au
 
 import ProfileNavbar from '../../components/Navbars/ProfileNavbar'
 import ProfileSidebar from '../../components/Navbars/ProfileSidebar'
-import ErrorAlert from '../../components/alerts/ErrorMessgae'
-import SuccessAlert from '../../components/alerts/SuccessMessage'
+import ErrorAlert from '../../components/alerts/ErrorAlert'
+import SuccessAlert from '../../components/alerts/SuccessAlert'
 import FormControl from '../../components/forms/FormControl'
 import InputPassword from '../../components/forms/InputPassword'
 import ButtonOutline from '../../components/buttons/ButtonOutline'
-import Button from '../../components/buttons/Button'
+
 import useAuth from '../../components/useAuth'
 
 export default function Password() {
@@ -120,7 +120,7 @@ export default function Password() {
                 />
               </FormControl>
               <div className='flex flex-row w-full justify-start items-center gap-4 my-4'>
-                <Button Outline onClick={handleGoBack} type={'button'} white>Go Back</Button>
+                <ButtonOutline onClick={handleGoBack} type={'button'} white>Go Back</ButtonOutline>
                 <ButtonOutline onClick={handleSubmit} type={'submit'}>Change Passsword</ButtonOutline>
               </div>
             </form>

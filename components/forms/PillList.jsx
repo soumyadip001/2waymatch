@@ -1,13 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Pill from './Pill'
 
-export default function PillList({ list = [], value }) {
+export default function PillList({
+  list = [], value, onChange = null
+}) {
 
   const [val, setVal] = useState(value)
+  
+  useEffect(() => {
+    setVal(value)
+  }, [value])
 
   const setValue = (v) => {
     if (v) {
       setVal(v)
+      onChange(v)
     }
   }
 
@@ -19,7 +26,7 @@ export default function PillList({ list = [], value }) {
           active={item === val}
           onClick={(e) => setValue(e)}
           value={item}
-        />  
+        />
       )}
     </div>
   )

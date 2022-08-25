@@ -1,10 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function InputText({
   type = 'text', value, name, required = false,
-  helpText = null
+  helpText = null,
+  onChange = null,
+  readOnly = false
 }) {
   const [val, setValue] = useState(value)
+
+  const setAndEmitValue = (updatedVal) => {
+    setValue(updatedVal)
+    onChange(updatedVal)
+  }
+
+  useEffect(() => {
+    setValue(value)
+  }, [value])
 
   return (
     <div className="flex flex-col items-start justify-start h-auto w-full">
@@ -15,7 +26,8 @@ export default function InputText({
         name={name}
         id={name}
         required={required}
-        onChange={(e) => setValue(e.target.value)}
+        readOnly={readOnly}
+        onChange={(e) => setAndEmitValue(e.target.value)}
       />
       {helpText &&
         <span className="font-light text-sm text-gray-400">

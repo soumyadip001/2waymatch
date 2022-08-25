@@ -5,8 +5,8 @@ import { useRouter } from 'next/router'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 import AuthFooter from "../components/Footers/AuthFooter"
-import ErrorAlert from "../components/alerts/ErrorMessgae"
-import SuccessAlert from "../components/alerts/SuccessMessage"
+import ErrorAlert from "../components/alerts/ErrorAlert"
+import SuccessAlert from "../components/alerts/SuccessAlert"
 
 function Login() {
 

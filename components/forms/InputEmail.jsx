@@ -1,17 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getAuth, sendEmailVerification } from 'firebase/auth'
 import ButtonOutline from '../buttons/ButtonOutline';
+import ErrorMessage from '../alerts/ErrorMessage';
+import SuccessMessage from '../alerts/SuccessMessage';
 
 export default function InputEmail({
-  value, name, required = false, verified = false, helpText = null,
-  verificationNeeded = true,
-  readonly = false
+  value, name, required = false,
+  helpText = null,
+  verified = false, verificationNeeded = true,
+  readOnly = false,
+  onChange = null,
+  validateOnType = false
 }) {
   const auth = getAuth()
 
   const [val, setValue] = useState(value)
-  const [error, setError] = useState('This is an error message')
-  const [success, setSuccess] = useState('This is an success message')
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
 
   const flexWidthClass = verificationNeeded ? 'w-9/12' : 'w-full'
 
@@ -26,6 +31,28 @@ export default function InputEmail({
     }
   }
 
+  const setAndEmitValue = (updatedVal) => {
+    setValue(updatedVal)
+    onChange(updatedVal)
+    if (validateOnType) {
+      setSuccess(null)
+      setError(null)
+      validateEmail(updatedVal) ? setSuccess('email is valid') : setError('Invalid email')
+    }
+  }
+
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+  }
+
+  useEffect(() => {
+    setValue(value)
+  }, [value])
+
   return (
     <div className="flex items-center justify-between h-auto w-full">
       <div className={`flex flex-col gap-2 ${flexWidthClass}`}>
@@ -36,8 +63,8 @@ export default function InputEmail({
           name={name}
           id={name}
           required={required}
-          readOnly={readonly}
-          onChange={(e) => setValue(e.target.value)}
+          readOnly={readOnly}
+          onChange={(e) => setAndEmitValue(e.target.value)}
         />
         {helpText &&
           <span className="font-light text-sm text-gray-400">
@@ -45,11 +72,20 @@ export default function InputEmail({
             &nbsp;{helpText}
           </span>
         }
+        {error &&
+          <ErrorMessage>{ error }</ErrorMessage>
+        }
+        {success &&
+          <SuccessMessage>{ success }</SuccessMessage>
+        }
       </div>
       {verificationNeeded &&
         <div className="flex flex-row w-2/12">
           {verified &&
-            <span className="text-green-500 text-sm">Email Verified</span>
+            <span className="text-green-500 text-sm">
+              <i className="fa fa-check mr-1"></i>
+              Email Verified
+            </span>
           }
           {!verified &&
             <ButtonOutline onClick={sendVerificationEmail}>Verify</ButtonOutline>
