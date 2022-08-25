@@ -93,7 +93,9 @@ function Login() {
 
               <div className="mb-3 flex flex-wrap content-center">
                 <input id="remember" type="checkbox" className="mr-1 checked:bg-blueGray-600" /> <label htmlFor="remember" className="mr-auto text-xs font-semibold">Remember for 30 days</label>
-                <a href="#" className="text-xs font-semibold text-blueGray-600">Forgot password?</a>
+                <button type='button' className="text-xs font-semibold text-blueGray-600">
+                  <Link href={'/forgot'}>Forgot password?</Link>
+                </button>
               </div>
 
               <div className="mb-3">
