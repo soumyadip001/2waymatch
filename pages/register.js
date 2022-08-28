@@ -183,22 +183,27 @@ function Register() {
               <div className="flex -mx-3">
                 <div className="w-full px-3 mb-12">
                   <label htmlFor="" className="text-xs font-semibold px-1">Password</label>
-                  <div className="flex">
-                    <div
-                      className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
-                    >
-                      <i className="fa fa-lock text-gray-400 text-lg"></i>
+                  <div className='flex flex-col w-full items-start'>
+                    <div className="flex w-full">
+                      <div
+                        className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
+                      >
+                        <i className="fa fa-lock text-gray-400 text-lg"></i>
+                      </div>
+                      <input
+                        type="password"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blueGray-600"
+                        placeholder="************"
+                        name="password"
+                        id="password"
+                        required
+                        maxLength={50}
+                        minLength={6}
+                      />
                     </div>
-                    <input
-                      type="password"
-                      className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blueGray-600"
-                      placeholder="************"
-                      name="password"
-                      id="password"
-                      required
-                      maxLength={50}
-                      minLength={6}
-                    />
+                    <div className='font-light text-sm text-gray-400'>
+                      <span>Password length must be at least 8 characters. Password must have one uppercase letter, one number, one special character.</span>
+                    </div>
                   </div>
                 </div>
               </div>
