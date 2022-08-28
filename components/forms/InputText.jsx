@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 
 export default function InputText({
   type = 'text', value, name, required = false,
+  maxLength = 100,
   helpText = null,
   onChange = null,
   readOnly = false
@@ -28,6 +29,7 @@ export default function InputText({
         required={required}
         readOnly={readOnly}
         onChange={(e) => setAndEmitValue(e.target.value)}
+        maxLength={maxLength}
       />
       {helpText &&
         <span className="font-light text-sm text-gray-400">
