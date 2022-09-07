@@ -1,24 +1,21 @@
-import { useEffect, useState } from "react";
-import useAuth from "../useAuth";
+import { useEffect, useState } from "react"
+import useAuth from "../useAuth"
 
-import ErrorAlert from "../alerts/ErrorAlert";
-import SuccessAlert from "../alerts/SuccessAlert";
-import FormControl from "./FormControl";
-import InputText from "./InputText";
-import PillList from "./PillList";
-import ButtonOutline from "../buttons/ButtonOutline";
-import LoaderIcon from "../icons/LoaderIcon";
-import CardFooter from "../atoms/CardFooter";
+import ErrorAlert from "../alerts/ErrorAlert"
+import SuccessAlert from "../alerts/SuccessAlert"
+import FormControl from "./FormControl"
+import InputText from "./InputText"
+import PillList from "./PillList"
+import CardFooter from "../atoms/CardFooter"
+import ButtonOutline from "../buttons/ButtonOutline"
+import LoaderIcon from "../icons/LoaderIcon"
 
-export default function FamilyDetailsForm() {
+export default function EmploymentForm() {
 
-  const defaultFormData = {
-    fatherName: '', motherName: '', siblingCount: 0,
-    familyType: 'neuclear', familyValue: 'moderate'
-  }
-  const familyTypeList = ['neuclear', 'joint']
-  const familyValuesList = ['liberal', 'moderate', 'conservative']
   const local = true
+  const defaultFormData = {
+    employmentName: '', jobRole: '', passingYear: '', employmentType: 'full time'
+  }
 
   const user = useAuth()
   const [error, setError] = useState(null)
@@ -30,8 +27,8 @@ export default function FamilyDetailsForm() {
     async function fetchData() {
       setLoader(true)
       const url = !local ?
-        process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/family'
-        : 'http://127.0.0.1:4002/auth/profile/family'
+        process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/employment'
+        : 'http://127.0.0.1:4002/auth/profile/employment'
       try {
         const response = await fetch(`${url}/${user.uid}`)
         const result = await response.json()
@@ -61,8 +58,8 @@ export default function FamilyDetailsForm() {
     }
   }
 
-  const handleAddressSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     setError(null)
     setSuccess(null)
     console.log(formData)
@@ -74,26 +71,22 @@ export default function FamilyDetailsForm() {
       body: JSON.stringify({
         ...formData,
         firebaseUserId: user.uid,
-        name: user.displayName,
-        email: user.email,
       })
     }
 
-    if (!formData.familyType || !formData.familyValue || !formData.fatherName || !formData.motherName) {
+    if (!formData.birthPlace || !formData.birthTime || !formData.dob || !formData.mangalik) {
       setError('Please fill all the mandatory details')
-    } else if (parseInt(formData.siblingCount) < 0) {
-      setError('Invalid sibling count')
     } else {
       setLoader(true)
       try {
         const url = !local ?
-          process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/family'
-          : 'http://127.0.0.1:4002/auth/profile/family'
+          process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/employment'
+          : 'http://127.0.0.1:4002/auth/profile/employment'
         const response = await fetch(url, options)
         const result = await response.json()
         console.log(result)
         setLoader(false)
-        setSuccess('family details updated successfully!')
+        setSuccess('Employment details updated successfully!')
       } catch (err) {
         setLoader(false)
         setError('Operation failed!')
@@ -112,54 +105,48 @@ export default function FamilyDetailsForm() {
           <SuccessAlert>{ success }</SuccessAlert>
         }
       </div>
-      { user &&
+      {user &&
         <input type={'hidden'} value={user.uid} />
       }
-      <FormControl title={'Father\'s Name'}>
+      <FormControl title={'Current employment details'}>
         <InputText
-          name={'fatherName'} required
-          value={formData.fatherName}
+          name={'employmentName'} required
+          value={formData.employmentName}
           maxLength={50}
-          onChange={(p) => updateFormData('fatherName', p)}
+          onChange={(p) => updateFormData('employmentName', p)}
         />
       </FormControl>
-      <FormControl title={'Mather\'s Name'}>
+      <FormControl title={'Job Role'}>
         <InputText
-          name={'motherName'} required
-          value={formData.motherName}
+          name={'jobRole'} required
+          value={formData.jobRole}
           maxLength={50}
-          onChange={(p) => updateFormData('motherName', p)}
+          onChange={(p) => updateFormData('jobRole', p)}
         />
       </FormControl>
-      <FormControl title={'How many siblings you have'}>
+      <FormControl title={'Passing year'}>
         <InputText
-          name={'siblingCount'} type={'number'}
-          value={formData.siblingCount}
-          maxLength={3}
-          onChange={(p) => updateFormData('siblingCount', p)}
+          name={'passingYear'} required
+          value={formData.passingYear}
+          maxLength={50}
+          onChange={(p) => updateFormData('passingYear', p)}
         />
       </FormControl>
-      <FormControl title={'Family type'}>
+      <FormControl title={'Course Type'}>
         <PillList
-          list={familyTypeList} value={defaultFormData.familyType}
-          onChange={(p) => updateFormData('familyType', p)}
-        ></PillList>
-      </FormControl>
-      <FormControl title={'Family values'}>
-        <PillList
-          list={familyValuesList} value={defaultFormData.familyValue}
-          onChange={(p) => updateFormData('familyValue', p)}
+          list={['part time', 'full time']} value={defaultFormData.employmentType}
+          onChange={(p) => updateFormData('employmentType', p)}
         ></PillList>
       </FormControl>
       <CardFooter>
-        <ButtonOutline onClick={handleAddressSubmit} type={'button'} disabled={loader}>
+        <ButtonOutline onClick={handleSubmit} type={'button'} disabled={loader}>
           { loader &&
             <LoaderIcon></LoaderIcon>
           }
           { !loader &&
             <i className='fa fa-save mr-4' aria-hidden={'true'}></i>
           }
-          Save
+          Update Employer
         </ButtonOutline>
         <ButtonOutline white>Cancel</ButtonOutline>
       </CardFooter>

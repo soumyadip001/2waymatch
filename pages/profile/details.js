@@ -6,6 +6,9 @@ import AddressForm from '../../components/forms/AddressForm'
 import CardHeader from '../../components/atoms/CardHeader'
 import FamilyDetailsForm from '../../components/forms/FamilyDetailsForm'
 import ReligionForm from '../../components/forms/ReligionForm'
+import AstroForm from '../../components/forms/AstroForm'
+import EducationForm from '../../components/forms/EducationForm'
+import EmploymentForm from '../../components/forms/EmploymentForm'
 
 export default function Details() {
   return (
@@ -56,7 +59,7 @@ export default function Details() {
               icon={'cog'}
             />
             <div className='flex flex-col px-4 w-full'>
-              Blank Space Here
+              <AstroForm />
             </div>
           </Card>
           <Card>
@@ -66,7 +69,7 @@ export default function Details() {
               icon={'building'}
             />
             <div className='flex flex-col px-4 w-full'>
-              Blank Space Here
+              <EducationForm />
             </div>
           </Card>
           <Card>
@@ -76,7 +79,7 @@ export default function Details() {
               icon={'paper-plane'}
             />
             <div className='flex flex-col px-4 w-full'>
-              Blank Space Here
+              <EmploymentForm />
             </div>
           </Card>
           <Card>

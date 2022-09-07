@@ -3,22 +3,17 @@ import useAuth from "../useAuth";
 
 import ErrorAlert from "../alerts/ErrorAlert";
 import SuccessAlert from "../alerts/SuccessAlert";
+import CardFooter from "../atoms/CardFooter";
+import ButtonOutline from "../buttons/ButtonOutline";
+import LoaderIcon from "../icons/LoaderIcon";
 import FormControl from "./FormControl";
 import InputText from "./InputText";
 import PillList from "./PillList";
-import ButtonOutline from "../buttons/ButtonOutline";
-import LoaderIcon from "../icons/LoaderIcon";
-import CardFooter from "../atoms/CardFooter";
 
-export default function FamilyDetailsForm() {
+export default function AstroForm() {
 
-  const defaultFormData = {
-    fatherName: '', motherName: '', siblingCount: 0,
-    familyType: 'neuclear', familyValue: 'moderate'
-  }
-  const familyTypeList = ['neuclear', 'joint']
-  const familyValuesList = ['liberal', 'moderate', 'conservative']
   const local = true
+  const defaultFormData = { mangalik: 'no', dob: '', birthTime: '', birthPlace: '' }
 
   const user = useAuth()
   const [error, setError] = useState(null)
@@ -30,8 +25,8 @@ export default function FamilyDetailsForm() {
     async function fetchData() {
       setLoader(true)
       const url = !local ?
-        process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/family'
-        : 'http://127.0.0.1:4002/auth/profile/family'
+        process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/astro'
+        : 'http://127.0.0.1:4002/auth/profile/astro'
       try {
         const response = await fetch(`${url}/${user.uid}`)
         const result = await response.json()
@@ -61,8 +56,8 @@ export default function FamilyDetailsForm() {
     }
   }
 
-  const handleAddressSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     setError(null)
     setSuccess(null)
     console.log(formData)
@@ -74,26 +69,22 @@ export default function FamilyDetailsForm() {
       body: JSON.stringify({
         ...formData,
         firebaseUserId: user.uid,
-        name: user.displayName,
-        email: user.email,
       })
     }
 
-    if (!formData.familyType || !formData.familyValue || !formData.fatherName || !formData.motherName) {
+    if (!formData.birthPlace || !formData.birthTime || !formData.dob || !formData.mangalik) {
       setError('Please fill all the mandatory details')
-    } else if (parseInt(formData.siblingCount) < 0) {
-      setError('Invalid sibling count')
     } else {
       setLoader(true)
       try {
         const url = !local ?
-          process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/family'
-          : 'http://127.0.0.1:4002/auth/profile/family'
+          process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/astro'
+          : 'http://127.0.0.1:4002/auth/profile/astro'
         const response = await fetch(url, options)
         const result = await response.json()
         console.log(result)
         setLoader(false)
-        setSuccess('family details updated successfully!')
+        setSuccess('astro details updated successfully!')
       } catch (err) {
         setLoader(false)
         setError('Operation failed!')
@@ -112,47 +103,41 @@ export default function FamilyDetailsForm() {
           <SuccessAlert>{ success }</SuccessAlert>
         }
       </div>
-      { user &&
+      {user &&
         <input type={'hidden'} value={user.uid} />
       }
-      <FormControl title={'Father\'s Name'}>
-        <InputText
-          name={'fatherName'} required
-          value={formData.fatherName}
-          maxLength={50}
-          onChange={(p) => updateFormData('fatherName', p)}
-        />
-      </FormControl>
-      <FormControl title={'Mather\'s Name'}>
-        <InputText
-          name={'motherName'} required
-          value={formData.motherName}
-          maxLength={50}
-          onChange={(p) => updateFormData('motherName', p)}
-        />
-      </FormControl>
-      <FormControl title={'How many siblings you have'}>
-        <InputText
-          name={'siblingCount'} type={'number'}
-          value={formData.siblingCount}
-          maxLength={3}
-          onChange={(p) => updateFormData('siblingCount', p)}
-        />
-      </FormControl>
-      <FormControl title={'Family type'}>
+      <FormControl title={'Are you mangalik'}>
         <PillList
-          list={familyTypeList} value={defaultFormData.familyType}
-          onChange={(p) => updateFormData('familyType', p)}
+          list={['yes', 'no']} value={defaultFormData.mangalik}
+          onChange={(p) => updateFormData('mangalik', p)}
         ></PillList>
       </FormControl>
-      <FormControl title={'Family values'}>
-        <PillList
-          list={familyValuesList} value={defaultFormData.familyValue}
-          onChange={(p) => updateFormData('familyValue', p)}
-        ></PillList>
+      <FormControl title={'Date of birth'}>
+        <InputText
+          name={'dob'} required
+          type={'date'}
+          value={formData.dob}
+          onChange={(p) => updateFormData('dob', p)}
+        />
+      </FormControl>
+      <FormControl title={'Time of birth'}>
+        <InputText
+          name={'birthTime'} required
+          type={'time'}
+          value={formData.birthTime}
+          onChange={(p) => updateFormData('birthTime', p)}
+        />
+      </FormControl>
+      <FormControl title={'Place of birth'}>
+        <InputText
+          name={'birthPlace'} required
+          value={formData.birthPlace}
+          maxLength={50}
+          onChange={(p) => updateFormData('birthPlace', p)}
+        />
       </FormControl>
       <CardFooter>
-        <ButtonOutline onClick={handleAddressSubmit} type={'button'} disabled={loader}>
+        <ButtonOutline onClick={handleSubmit} type={'button'} disabled={loader}>
           { loader &&
             <LoaderIcon></LoaderIcon>
           }
