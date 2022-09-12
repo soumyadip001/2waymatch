@@ -5,7 +5,7 @@ export default function CardHeader({ title, description, icon = null }) {
     : null
 
   return (
-    <div className='flex flex-col w-full gap-4 justify-start'>
+    <div className='flex flex-col w-full gap-4 justify-start px-4'>
       <h2 className='text-2xl font-bold tracking-tight sm:text-3xl md:text-2xl'>
         {iconHtml}
         {title}

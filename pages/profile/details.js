@@ -9,6 +9,7 @@ import ReligionForm from '../../components/forms/ReligionForm'
 import AstroForm from '../../components/forms/AstroForm'
 import EducationForm from '../../components/forms/EducationForm'
 import EmploymentForm from '../../components/forms/EmploymentForm'
+import HobbiesForm from '../../components/forms/HobbiesForm'
 
 export default function Details() {
   return (
@@ -89,7 +90,7 @@ export default function Details() {
               icon={'music'}
             />
             <div className='flex flex-col px-4 w-full'>
-              Blank Space Here
+              <HobbiesForm />
             </div>
           </Card>
           <ProfileFooter />

@@ -2,7 +2,8 @@ function ButtonOutline({
   children, onClick,
   primary = false, white = false,
   type = 'button',
-  disabled = false
+  disabled = false,
+  mt = 0
 }) {
 
   const tailWindClasses = 'group inline-flex items-center justify-center rounded-md py-2 px-4 text-sm font-semibold border-2 bg-slate-900 border-slate-900 disabled:cursor-not-allowed disabled:opacity-40'
@@ -13,7 +14,7 @@ function ButtonOutline({
 
   return (
     <button
-      className={`${tailWindClasses} ${primaryClasses} ${whiteClasses}`}
+      className={`${tailWindClasses} ${primaryClasses} ${whiteClasses} mt-${mt}`}
       onClick={onClick}
       type={type}
       disabled={disabled}

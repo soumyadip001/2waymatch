@@ -1,4 +1,8 @@
-import Link from 'next/link'
+import Card from '../../components/atoms/Card'
+import CardHeader from '../../components/atoms/CardHeader'
+import ProfileFooter from '../../components/Footers/ProfileFooter'
+import ChatSettingsForm from '../../components/forms/ChatSettingsForm'
+import SystemSettingsForm from '../../components/forms/SystemSettingsForm'
 
 import ProfileNavbar from '../../components/Navbars/ProfileNavbar'
 import ProfileSidebar from '../../components/Navbars/ProfileSidebar'
@@ -15,13 +19,27 @@ export default function Notifications() {
           <ProfileSidebar active='Notifications' />
         </div>
         <div className="flex flex-col w-4/5">
-          <div className='flex flex-col w-full'>
-            Blank Notifications Page
-          </div>
-          <div className='text-slate-400'>
-            <p className='text-sm'>
-              <i className='fa fa-lock text-slate-900'></i>&nbsp; Please check our <span className='text-slate-500 font-semibold'><Link href={'#'}>Privacy and Policy</Link></span> and <span className='text-slate-500 font-semibold'><Link href={'#'}>Terms of Service</Link></span> before you share your details with us.</p>
-          </div>
+          <Card>
+            <CardHeader
+              title={'Update system notifications'}
+              description={'Here you can update your notification preferences'}
+              icon={'bell'}
+            />
+            <div className='flex flex-col px-4 w-full'>
+              <SystemSettingsForm />
+            </div>
+          </Card>
+          <Card>
+            <CardHeader
+              title={'Update chat settings'}
+              description={'Here you can update your notification preferences'}
+              icon={'message'}
+            />
+            <div className='flex flex-col px-4 w-full'>
+              <ChatSettingsForm />
+            </div>
+          </Card>
+          <ProfileFooter />
         </div>
       </div>
     </div>

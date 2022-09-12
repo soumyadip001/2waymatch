@@ -18,6 +18,7 @@ import PillList from '../../components/forms/PillList'
 import ButtonLogout from '../../components/buttons/ButtonLogout'
 
 import useAuth from '../../components/useAuth'
+import InputTextarea from '../../components/forms/InputTextarea'
 
 export default function Profile() {
 
@@ -25,7 +26,7 @@ export default function Profile() {
   const router = useRouter()
   const defaultFormData = {
     name: '', email: '', altEmail: '',
-    phone: '', gender: 'Male', dob: '',
+    bio: '', phone: '', gender: 'Male', dob: '',
     country: 'India', height: '', weight: '',
     maritalStatus: 'Single', diet: 'Non Veg',
     bloodGroup: '', disabled: false,
@@ -216,6 +217,12 @@ export default function Profile() {
                 <InputPhone
                   value={formData.phone} name='Phone'
                   onChange={(p) => updateFormData('phone', p)}
+                />
+              </FormControl>
+              <FormControl title={'About Yourself'}>
+                <InputTextarea
+                  value={user.bio} name='Bio'
+                  onChange={(p) => updateFormData('bio', p)}
                 />
               </FormControl>
               <FormControl title={'Gender'}>

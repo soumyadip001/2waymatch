@@ -6,7 +6,7 @@ export default function PillList({
 }) {
 
   const [val, setVal] = useState(value)
-  
+
   useEffect(() => {
     setVal(value)
   }, [value])
