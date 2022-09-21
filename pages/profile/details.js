@@ -10,6 +10,7 @@ import AstroForm from '../../components/forms/AstroForm'
 import EducationForm from '../../components/forms/EducationForm'
 import EmploymentForm from '../../components/forms/EmploymentForm'
 import HobbiesForm from '../../components/forms/HobbiesForm'
+import OtherDetailsForm from '../../components/forms/OtherDetailsForm'
 
 export default function Details() {
   return (
@@ -25,12 +26,32 @@ export default function Details() {
         <div className="flex flex-col w-4/5">
           <Card>
             <CardHeader
-              title={'Update Address'}
+              title={'Other details'}
+              description={'Please add other details here'}
+              icon={'home'}
+            />
+            <div className='flex flex-col px-4 w-full'>
+              <OtherDetailsForm />
+            </div>
+          </Card>
+          <Card>
+            <CardHeader
+              title={'Update Current Address'}
               description={'Please add a valid address of your current residence'}
               icon={'home'}
             />
             <div className='flex flex-col px-4 w-full'>
-              <AddressForm />
+              <AddressForm type={'C'} />
+            </div>
+          </Card>
+          <Card>
+            <CardHeader
+              title={'Update Permanent Address'}
+              description={'Please add a valid address of your Permanent residence'}
+              icon={'home'}
+            />
+            <div className='flex flex-col px-4 w-full'>
+              <AddressForm type={'P'} />
             </div>
           </Card>
           <Card>

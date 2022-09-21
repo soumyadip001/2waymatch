@@ -14,7 +14,9 @@ export default function FamilyDetailsForm() {
 
   const defaultFormData = {
     fatherName: '', motherName: '', siblingCount: 0,
-    familyType: 'neuclear', familyValue: 'moderate'
+    familyType: 'neuclear', familyValue: 'moderate',
+    fatherEmploymentStatus: 'active',
+    motherEmploymentStatus: 'active'
   }
   const familyTypeList = ['neuclear', 'joint']
   const familyValuesList = ['liberal', 'moderate', 'conservative']
@@ -123,6 +125,12 @@ export default function FamilyDetailsForm() {
           onChange={(p) => updateFormData('fatherName', p)}
         />
       </FormControl>
+      <FormControl title={'Father\'s Employment Status'}>
+        <PillList
+          list={['active', 'retired']} value={defaultFormData.fatherEmploymentStatus}
+          onChange={(p) => updateFormData('fatherEmploymentStatus', p)}
+        ></PillList>
+      </FormControl>
       <FormControl title={'Mather\'s Name'}>
         <InputText
           name={'motherName'} required
@@ -130,6 +138,12 @@ export default function FamilyDetailsForm() {
           maxLength={50}
           onChange={(p) => updateFormData('motherName', p)}
         />
+      </FormControl>
+      <FormControl title={'Mother\'s Employment Status'}>
+        <PillList
+          list={['active', 'retired']} value={defaultFormData.motherEmploymentStatus}
+          onChange={(p) => updateFormData('motherEmploymentStatus', p)}
+        ></PillList>
       </FormControl>
       <FormControl title={'How many siblings you have'}>
         <InputText

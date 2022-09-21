@@ -11,7 +11,7 @@ import FormControl from "./FormControl";
 import InputText from "./InputText";
 import Select from "./Select";
 
-export default function AddressForm() {
+export default function AddressForm({ type = 'C' }) {
 
   const local = true
   const defaultFormData = {
@@ -34,8 +34,9 @@ export default function AddressForm() {
     async function fetchData() {
       setLoader(true)
       const url = process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/address'
+      const addressURI = type === 'C' ? null : '/permanent'
       try {
-        const response = await fetch(`${url}/${user.uid}`)
+        const response = await fetch(`${url}${addressURI}/${user.uid}`)
         const result = await response.json()
         if (result && result.success) {
           console.log('>>', result.data)
@@ -54,7 +55,7 @@ export default function AddressForm() {
     if (user && user.uid) {
       fetchData()
     }
-  }, [user])
+  }, [user, type])
 
   const updateFormData = (key, value) => {
     if (key) {
@@ -98,7 +99,8 @@ export default function AddressForm() {
         const url = !local ?
           process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL + '/auth/profile/address'
           : '127.0.0.1:4002/auth/profile/address'
-        const response = await fetch(url, options)
+        const addressURI = type === 'C' ? null : '/permanent'
+        const response = await fetch(`${url}${addressURI}`, options)
         const result = await response.json()
         console.log(result)
         setLoader(false)
@@ -127,6 +129,17 @@ export default function AddressForm() {
       </div>
       {user &&
         <input type={'hidden'} value={user.uid} />
+      }
+      {type === 'P' &&
+        <div className="flex cursor-pointer">
+          <input
+            id="CopyCurrentAddressCheckbox"
+            aria-label="Copy from current address"
+            type={'checkbox'}
+            style={{width: '1.2rem', height: '1.2rem', marginRight: '.5rem', accentColor: '#0f172a'}}
+          />
+          <label htmlFor="CopyCurrentAddressCheckbox" className="font-semibold">Copy from current address</label>
+        </div>
       }
       <FormControl title={'Country'}>
         <Select

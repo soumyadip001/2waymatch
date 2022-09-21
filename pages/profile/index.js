@@ -42,15 +42,6 @@ export default function Profile() {
     { key: 'CA', value: 'Canada' },
     { key: 'USA', value: 'United States' },
   ]
-  const BloodGroups = [
-    { key: 'A+', value: 'A+' },
-    { key: 'A-', value: 'A-' },
-    { key: 'AB', value: 'AB' },
-    { key: 'B+', value: 'B+' },
-    { key: 'B-', value: 'B-' },
-    { key: 'O-', value: 'O-' },
-    { key: 'O+', value: 'O+' },
-  ]
 
   const redirectToPassChange = () => {
     router.push('/profile/password/', )
@@ -232,46 +223,39 @@ export default function Profile() {
                   onChange={(p) => updateFormData('gender', p)}
                 />
               </FormControl>
-              <div className='flex flex-row w-full justify-between items-center'>
-                <div className='flex w-7/12 items-center'>
-                  <FormControl title={'Date Of Birth'}>
-                    <InputText
-                      type={'date'}
-                      value={formData.dob}
-                      name='dob'
-                      onChange={(p) => updateFormData('dob', p)}
-                    />
-                  </FormControl>
-                </div>
-                <div className='flex w-4/12 items-center'>
-                  <FormControl title={'Country'}>
-                    <Select
-                      name={'country'}
-                      options={countries}
-                      value={formData.country}
-                      onChange={(p) => updateFormData('country', p)}
-                    ></Select>
-                  </FormControl>
-                </div>
-              </div>
-              <div className='flex flex-row w-full justify-between items-center'>
-                <div className='flex w-6/12 items-center'>
-                  <FormControl title={'Height'}>
-                    <InputText
-                      value={formData.height} name='height' helpText={'Your height in cm'}
-                      onChange={(p) => updateFormData('height', p)}
-                    />
-                  </FormControl>
-                </div>
-                <div className='flex w-5/12 items-center'>
-                  <FormControl title={'Weight'}>
-                    <InputText
-                      value={formData.weight || ''} name='weight' helpText={'Your weight in kg'}
-                      onChange={(p) => updateFormData('weight', p)}
-                    />
-                  </FormControl>
-                </div>
-              </div>
+
+              <FormControl title={'Date Of Birth'}>
+                <InputText
+                  type={'date'}
+                  value={formData.dob}
+                  name='dob'
+                  onChange={(p) => updateFormData('dob', p)}
+                />
+              </FormControl>
+
+              <FormControl title={'Country'}>
+                <Select
+                  name={'country'}
+                  options={countries}
+                  value={formData.country}
+                  onChange={(p) => updateFormData('country', p)}
+                ></Select>
+              </FormControl>
+
+              <FormControl title={'Height'}>
+                <InputText
+                  value={formData.height} name='height' helpText={'Your height in cm'}
+                  onChange={(p) => updateFormData('height', p)}
+                />
+              </FormControl>
+            
+              <FormControl title={'Weight'} hidden={true}>
+                <InputText
+                  value={formData.weight || ''} name='weight' helpText={'Your weight in kg'}
+                  onChange={(p) => updateFormData('weight', p)}
+                />
+              </FormControl>
+
               <FormControl title={'Marital Status'}>
                 <PillList
                   value={formData.maritalStatus}
@@ -279,32 +263,15 @@ export default function Profile() {
                   onChange={(p) => updateFormData('maritalStatus', p)}
                 />
               </FormControl>
-              <FormControl title={'Diet'}>
+              
+              <FormControl title={'Disabled'}>
                 <PillList
-                  value={formData.diet}
-                  list={['Veg', 'Non Veg', 'Others']}
-                  onChange={(p) => updateFormData('diet', p)}
+                  value={formData.disabled}
+                  list={['Yes', 'No']}
+                  onChange={(p) => updateFormData('disabled', p)}
                 />
               </FormControl>
-              <div className='flex flex-row w-full justify-between items-center'>
-                <div className='flex w-6/12 items-center'>
-                  <FormControl title={'Blood Group'}>
-                    <Select
-                      name={'blood'} options={BloodGroups} value={formData.bloodGroup}
-                      onChange={(p) => updateFormData('bloodGroup', p)}
-                    ></Select>
-                  </FormControl>
-                </div>
-                <div className='flex w-5/12 items-center'>
-                  <FormControl title={'Disabled'}>
-                    <PillList
-                      value={formData.disabled}
-                      list={['Yes', 'No']}
-                      onChange={(p) => updateFormData('disabled', p)}
-                    />
-                  </FormControl>
-                </div>
-              </div>
+
               <div className='flex flex-row w-full justify-start items-center gap-4 my-4'>
                 <ButtonOutline onClick={redirectToPassChange}>Change Passsword</ButtonOutline>
                 <ButtonLogout />

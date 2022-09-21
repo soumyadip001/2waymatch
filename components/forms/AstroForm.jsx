@@ -13,7 +13,7 @@ import PillList from "./PillList";
 export default function AstroForm() {
 
   const local = true
-  const defaultFormData = { mangalik: 'no', dob: '', birthTime: '', birthPlace: '' }
+  const defaultFormData = { mangalik: 'no', dob: '', birthTime: '', birthPlace: '', horoscope: '' }
 
   const user = useAuth()
   const [error, setError] = useState(null)
@@ -134,6 +134,13 @@ export default function AstroForm() {
           value={formData.birthPlace}
           maxLength={50}
           onChange={(p) => updateFormData('birthPlace', p)}
+        />
+      </FormControl>
+      <FormControl title={'Upload Horoscope'}>
+        <InputText
+          name={'horoscope'}
+          type="file"
+          onChange={(p) => updateFormData('horoscope', p)}
         />
       </FormControl>
       <CardFooter>

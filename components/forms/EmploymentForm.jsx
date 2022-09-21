@@ -14,8 +14,12 @@ export default function EmploymentForm() {
 
   const local = true
   const defaultFormData = {
-    employmentName: '', jobRole: '', passingYear: '', employmentType: 'full time'
+    employmentName: '', jobRole: '', passingYear: '', employmentType: 'full time',
+    payslip: '', incomeSlab: '0 - 1 lakh', employmentCategory: ''
   }
+  const employmentTypesArr = [
+    'Private', 'Govt', 'Defence', 'Business', 'Self', 'Not Working', 'Student'
+  ]
 
   const user = useAuth()
   const [error, setError] = useState(null)
@@ -95,6 +99,13 @@ export default function EmploymentForm() {
     }
   }
 
+  const handleCancel = (e) => {
+    e.preventDefault()
+    setError(null)
+    setSuccess(null)
+    setLoader(false)
+  }
+
   return (
     <form>
       <div className='flex flex-col w-full h-auto my-4 gap-4'>
@@ -124,7 +135,7 @@ export default function EmploymentForm() {
           onChange={(p) => updateFormData('jobRole', p)}
         />
       </FormControl>
-      <FormControl title={'Passing year'}>
+      <FormControl title={'Years of exp'}>
         <InputText
           name={'passingYear'} required
           value={formData.passingYear}
@@ -138,6 +149,27 @@ export default function EmploymentForm() {
           onChange={(p) => updateFormData('employmentType', p)}
         ></PillList>
       </FormControl>
+      <FormControl title={'Income Slab'}>
+        <PillList
+          list={['0 - 1 lakh', '1 - 5 lakh', '5 - 10 lakh', '10 - 20 lakh', '> 20 lakh']}
+          value={defaultFormData.incomeSlab}
+          onChange={(p) => updateFormData('incomeSlab', p)}
+        ></PillList>
+      </FormControl>
+      <FormControl title={'Income Slab'}>
+        <PillList
+          list={employmentTypesArr}
+          value={defaultFormData.employmentCategory}
+          onChange={(p) => updateFormData('employmentCategory', p)}
+        ></PillList>
+      </FormControl>
+      <FormControl title={'Upload Latest Payslip'}>
+        <InputText
+          name={'payslip'}
+          type="file"
+          onChange={(p) => updateFormData('payslip', p)}
+        />
+      </FormControl>
       <CardFooter>
         <ButtonOutline onClick={handleSubmit} type={'button'} disabled={loader}>
           { loader &&
@@ -148,7 +180,7 @@ export default function EmploymentForm() {
           }
           Update Employer
         </ButtonOutline>
-        <ButtonOutline white>Cancel</ButtonOutline>
+        <ButtonOutline white onClick={handleCancel}>Cancel</ButtonOutline>
       </CardFooter>
     </form>
   )

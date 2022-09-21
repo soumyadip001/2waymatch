@@ -36,6 +36,13 @@ export default function ReligionForm() {
     console.log(formData)
   }
 
+  const handleCancel = (e) => {
+    e.preventDefault()
+    setError(null)
+    setSuccess(null)
+    setLoader(false)
+  }
+
   return (
     <form>
       <div className='flex flex-col w-full h-auto my-4 gap-4'>
@@ -57,7 +64,15 @@ export default function ReligionForm() {
           onChange={(p) => updateFormData('religion', p)}
         />
       </FormControl>
-      <FormControl title={'Community'}>
+      <FormControl title={'Mother Tougue'}>
+        <InputText
+          name={'motherTongue'} required
+          value={formData.motherTongue}
+          maxLength={50}
+          onChange={(p) => updateFormData('motherTongue', p)}
+        />
+      </FormControl>
+      <FormControl title={'Caste'}>
         <InputText
           name={'community'} required
           value={formData.community}
@@ -65,7 +80,7 @@ export default function ReligionForm() {
           onChange={(p) => updateFormData('community', p)}
         />
       </FormControl>
-      <FormControl title={'Sub Community'}>
+      <FormControl title={'Sub Caste'}>
         <InputText
           name={'subCommunity'} required
           value={formData.subCommunity}
@@ -81,14 +96,14 @@ export default function ReligionForm() {
           onChange={(p) => updateFormData('gothra', p)}
         />
       </FormControl>
-      <FormControl title={'Mother Tougue'}>
+      {/* <FormControl title={'Upload Horoscope'}>
         <InputText
-          name={'motherTongue'} required
-          value={formData.motherTongue}
-          maxLength={50}
-          onChange={(p) => updateFormData('motherTongue', p)}
+          name={'horoscope'}
+          type="file"
+          onChange={(p) => updateFormData('horoscope', p)}
         />
-      </FormControl>
+      </FormControl> */}
+
       <div className='flex flex-row w-full justify-start items-center gap-4 mt-4'>
         <ButtonOutline onClick={handleAddressSubmit} type={'button'} disabled={loader}>
           { loader &&
@@ -99,7 +114,7 @@ export default function ReligionForm() {
           }
           Save
         </ButtonOutline>
-        <ButtonOutline white>Cancel</ButtonOutline>
+        <ButtonOutline white onClick={handleCancel}>Cancel</ButtonOutline>
       </div>
     </form>
   )

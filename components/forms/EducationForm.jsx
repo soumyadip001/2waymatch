@@ -13,7 +13,8 @@ export default function EducationForm() {
 
   const local = true
   const defaultFormData = {
-    degree: '', college: '', passingYear: '', courseType: 'full time'
+    degree: '', college: '', passingYear: '', courseType: 'full time',
+    certificate: ''
   }
 
   const user = useAuth()
@@ -136,6 +137,13 @@ export default function EducationForm() {
           list={['part time', 'full time']} value={defaultFormData.courseType}
           onChange={(p) => updateFormData('courseType', p)}
         ></PillList>
+      </FormControl>
+      <FormControl title={'Upload Certificate'}>
+        <InputText
+          name={'certificate'}
+          type="file"
+          onChange={(p) => updateFormData('certificate', p)}
+        />
       </FormControl>
       <CardFooter>
         <ButtonOutline onClick={handleSubmit} type={'button'} disabled={loader}>
