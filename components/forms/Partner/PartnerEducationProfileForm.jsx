@@ -131,7 +131,7 @@ function PartnerEducationProfileForm() {
       </FormControl>
       <FormControl title={'Income Slab'}>
         <PillList
-          list={['0 - 1 lakh', '1 - 5 lakh', '5 - 10 lakh', '10 - 20 lakh', '> 20 lakh']}
+          list={['All', '0 - 1 lakh', '1 - 5 lakh', '5 - 10 lakh', '10 - 20 lakh', '> 20 lakh']}
           value={defaultFormData.incomeSlab}
           onChange={(p) => updateFormData('incomeSlab', p)}
         ></PillList>
